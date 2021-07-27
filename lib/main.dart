@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'blocPattern.dart';
 import 'cache_image.dart';
 import 'web_view_plugin.dart';
 
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
         '/github': (context) => GithubScreen(),
         '/google': (context) => GoogleScreen(),
         '/youtube': (context) => YouTubeScreen(),
+        '/blocPattern': (context) => MyBlocPattern(),
       },
       // home: Main(),
     );
@@ -39,7 +41,7 @@ class Main extends StatelessWidget {
             DrawerHeader(
               child: Center(child: Text('Header Area')),
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Colors.black,
               ),
             ),
             ListTile(
@@ -54,6 +56,13 @@ class Main extends StatelessWidget {
               onTap: () {
                 Navigator.pop(context);
                 Navigator.pushNamed(context, '/webView');
+              },
+            ),
+            ListTile(
+              title: Text('Flutter bloc pattern'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/blocPattern');
               },
             ),
           ],

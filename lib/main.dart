@@ -1,86 +1,64 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
-import 'categories.dart';
+import 'cache_image.dart';
+import 'web_view_plugin.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MyHomePage(title: 'final');
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  static final customCacheManager = CacheManager(
-    Config(
-      'CustomCacheKey',
-      stalePeriod: Duration(days: 15),
-      maxNrOfCacheObjects: 100,
-    ),
-  );
-
-  @override
-  Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Cache Image',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: Scaffold(
-          appBar: AppBar(
-            title: Text('Cache Image'),
-            actions: [
-              TextButton(
-                  style: TextButton.styleFrom(primary: Colors.white),
-                  onPressed: clear_cache,
-                  child: Text('Clear Cache'))
-            ],
-          ),
-          body: SafeArea(
-            child: GridView.extent(
-                maxCrossAxisExtent: 120.0,
-                crossAxisSpacing: 5,
-                mainAxisSpacing: 5,
-                children: listImage.map((e) => buildImage(e)).toList()),
-          ),
-        ));
-  }
-
-  Widget buildImage(ImageNetwork image) {
-    return Container(
-      child: CachedNetworkImage(
-        key: UniqueKey(),
-        // cacheManager: customCacheManager,
-        imageUrl: image.url,
-        fit: BoxFit.cover,
-        maxHeightDiskCache: 75,
-        maxWidthDiskCache: 75,
-        errorWidget: (context, url, error) => Icon(Icons.error),
-        placeholder: (context, url) =>
-            Center(child: CircularProgressIndicator()),
-      ),
+      title: 'Flutter Tutorials',
+      initialRoute: '/',
+      routes: {
+        // When navigating to the "/" route, build the Main widget.
+        '/': (context) => Main(),
+        '/cacheImages': (context) => cacheImage(),
+        '/webView': (context) => MyWebView(),
+        '/github': (context) => GithubScreen(),
+        '/google': (context) => GoogleScreen(),
+        '/youtube': (context) => YouTubeScreen(),
+      },
+      // home: Main(),
     );
   }
+}
 
-  void clear_cache() {
-    DefaultCacheManager().emptyCache();
-    print('called');
-    imageCache.clear();
-    imageCache.clearLiveImages();
-    setState(() {});
+class Main extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Final Presentation')),
+      body: Center(child: Text('WELCOME')),
+      drawer: Drawer(
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Center(child: Text('Header Area')),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+            ),
+            ListTile(
+              title: Text('Cached Network Images'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/cacheImages');
+              },
+            ),
+            ListTile(
+              title: Text('Flutter Web View Plugin'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/webView');
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

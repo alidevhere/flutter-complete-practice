@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'blocPattern.dart';
 import 'cache_image.dart';
+import 'getIt.dart';
 import 'web_view_plugin.dart';
 
 void main() => runApp(MyApp());
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         '/google': (context) => GoogleScreen(),
         '/youtube': (context) => YouTubeScreen(),
         '/blocPattern': (context) => MyBlocPattern(),
+        '/getIt': (context) => MyGetIt(),
       },
       // home: Main(),
     );
@@ -63,6 +65,15 @@ class Main extends StatelessWidget {
               onTap: () {
                 Navigator.pop(context);
                 Navigator.pushNamed(context, '/blocPattern');
+              },
+            ),
+            ListTile(
+              title: Text('Flutter Get It'),
+              onTap: () {
+                Navigator.pop(context);
+                getIt.registerSingleton<AppModel>(AppModelImplementation(),
+                    signalsReady: true);
+                Navigator.pushNamed(context, '/getIt');
               },
             ),
           ],

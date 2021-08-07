@@ -1,22 +1,8 @@
 import 'dart:async';
 
+import 'package:final_presentation_flutter/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-/// Custom [BlocObserver] which observes all bloc and cubit instances.
-class SimpleBlocObserver extends BlocObserver {
-  @override
-  void onEvent(Bloc bloc, Object event) {
-    super.onEvent(bloc, event);
-    print(event);
-  }
-
-  @override
-  void onTransition(Bloc bloc, Transition transition) {
-    super.onTransition(bloc, transition);
-    print(transition);
-  }
-}
 
 /// A [StatelessWidget] which uses:
 /// * [bloc](https://pub.dev/packages/bloc)
@@ -48,7 +34,11 @@ class CounterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Counter')),
+      drawer: MyDrawer(context),
+      appBar: AppBar(
+        title: const Text('Counter'),
+        backgroundColor: Colors.black,
+      ),
       body: BlocBuilder<CounterBloc, int>(
         builder: (_, count) {
           return Center(
@@ -63,6 +53,7 @@ class CounterPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5.0),
             child: FloatingActionButton(
+              backgroundColor: Colors.black,
               child: const Icon(Icons.add),
               onPressed: () =>
                   context.read<CounterBloc>().add(CounterEvent.increment),
@@ -71,6 +62,7 @@ class CounterPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5.0),
             child: FloatingActionButton(
+              backgroundColor: Colors.black,
               child: const Icon(Icons.remove),
               onPressed: () =>
                   context.read<CounterBloc>().add(CounterEvent.decrement),
@@ -79,8 +71,17 @@ class CounterPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5.0),
             child: FloatingActionButton(
+              backgroundColor: Colors.black,
               child: const Icon(Icons.brightness_6),
               onPressed: () => context.read<ThemeCubit>().toggleTheme(),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 5.0),
+            child: FloatingActionButton(
+              backgroundColor: Colors.black,
+              child: const Icon(Icons.home),
+              onPressed: () => context.read<ThemeCubit>().test(),
             ),
           ),
         ],
@@ -143,6 +144,10 @@ class ThemeCubit extends Cubit<ThemeData> {
     ),
     brightness: Brightness.dark,
   );
+
+  void test() {
+    print('EVENT TEST FUNCTION CALLED !!!!!');
+  }
 
   /// Toggles the current brightness between light and dark.
   void toggleTheme() {

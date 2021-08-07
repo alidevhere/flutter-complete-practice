@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:final_presentation_flutter/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
@@ -26,11 +27,10 @@ class _MyHomePageState extends State<cacheImage> {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Cache Image',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
         home: Scaffold(
+          drawer: MyDrawer(context),
           appBar: AppBar(
+            backgroundColor: Colors.black,
             title: Text('Cache Image'),
             actions: [
               TextButton(

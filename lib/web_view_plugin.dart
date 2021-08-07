@@ -1,3 +1,4 @@
+import 'package:final_presentation_flutter/main.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -5,8 +6,8 @@ class MyWebView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MyDrawer(context),
       appBar: AppBar(
-        elevation: 0.0,
         backgroundColor: Colors.black,
         title: Text(
           "Web View",
@@ -47,11 +48,10 @@ class GoogleScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         title: Text(
           "Google",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.white),
         ),
       ),
       body: SafeArea(
@@ -69,7 +69,10 @@ class GithubScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0.0,
+        title: Text(
+          "Github",
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: Colors.black,
       ),
       body: SafeArea(
@@ -88,10 +91,10 @@ class YouTubeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         title: Text(
           "YouTube",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.white),
         ),
       ),
       body: SafeArea(

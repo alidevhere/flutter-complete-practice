@@ -34,10 +34,7 @@ class MyGetIt extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Get It'),
     );
   }
 }
@@ -82,6 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
             if (snapshot.hasData) {
               return Scaffold(
                 appBar: AppBar(
+                  backgroundColor: Colors.black,
                   title: Text(widget.title),
                 ),
                 body: Center(
@@ -99,9 +97,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 floatingActionButton: FloatingActionButton(
+                  backgroundColor: Colors.black,
                   onPressed: getIt<AppModel>().incrementCounter,
                   tooltip: 'Increment',
-                  child: Icon(Icons.add),
+                  child: Icon(
+                    Icons.add,
+                  ),
                 ),
               );
             } else {

@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:final_presentation_flutter/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -34,7 +33,6 @@ class CounterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MyDrawer(context),
       appBar: AppBar(
         title: const Text('Counter'),
         backgroundColor: Colors.black,
